@@ -1,0 +1,73 @@
+git config --global user.name "Tu Nombre"		//Define el nombre a mi Git local
+git config --global user.email "correo@dominio.com"	//Define el correo con el cual usare GitHub (igual al de la cuenta)
+git init primer_repositorio		//Crea un repositorio, creando una carpeta nueva llamada primer_repositorio
+git status				//Muestra el estado del repositorio
+git add index.html			//Agrega un archivo al stagin
+git rm --cached index.html		//Quita el archivo del stagin
+git add -A				//Agrega todos los archivos al stagin
+git rm -f index.css			//Quita el archivo del stagin y lo borra el directorio
+git add -n index.css			//Permite comprobar si existe el archivo en el directorio. No hace nada con el archivo
+git commit -m "Inicializar nuestro landing"	//
+git commit --amend			//Permite agregar a un commit anterior un nuevo archivo. Si se usa -m permite rescribir el mensaje commit. para salir con q! ignora cambios
+git log					//Lista los commit realizados
+git tag -a 0.5 -m 'Versión estable'	//Permite crear una etiqueta para señalar una versión(0.5) de los archivos con un comentario.
+git tag					//Lista todas las etiquetas
+git tag 0.3 checksum.de.git.log		//Crea una etiqueta usando un commit pasado mediante el checksum del commit
+git log --oneline			//Lista versiones commit
+git diff <sha1> <sha1>			//Muestra diferencias usando el sha1 y sha2. En rojo lo que se quitó y en verde lo que se agregó
+git reset --soft <sha1>			//Restablece la versión en sha1 indicada y borra las versiones posteriores. Los mantiene en el stage.
+git reset --mixed <sha1>		//Restablece la versión en sha1 indicada y borra las versiones posteriores. Quita del stage, por tanto se tienen que agregar nuevamente los cambios.
+git reset HEAD clasica.jpg		//De la versión actual HEAD borra el archivo indicado
+git reset --hard			//Borra la versión indicada completamente en el stage y en el working directory. Pero si se tienen los sha de los commit se puede volver a las versiones borradas
+git config --global core.editor vim	//Configura el editor predeterminado en git
+git branch responsive			//Crea una rama llamada responsive
+git branch -l				//Lista las ramas
+git branch -d x				//Elimina la rama llamada x, solo si no tiene actividad
+git branch -D x				//Elimina la rama llamada x sin importar su contenido
+git branch -m reponsive RD		//Cambia el nombre de la rama
+git checkout RD				//Cambia la rama de trabajo actual
+git checkout <sha commit>		//Permite moverse entre commit como si fuera una rama
+git checkout -b nueva-imagen		//Crea nueva rama y se posiciona en ella
+git marge <nombreRama>			//Mezcla la rama actual con la rama mensionada. La rama actual absorve los cambios.
+git log --oneline --graph		//Visualiza el log de directorio con gráfico de ramas
+git rebase <nombreRama>			//Mezcla la rama actual con la indicada sin registrar la mezcla como una rama. Solo se hace en trabajo local no grupal
+git stash				//Permite moverse de rama sin necesidad de cerrar la rama anterior. De esta forma se congelan los cambios no terminados para despues volver a tomarlos
+git stash list				//Lista los stash
+git stash drop <nombreStash>		//Borra el stash
+git stash apply				//Aplica el stash reciente
+git stash apply <nombreStash>		//Aplica el stash indicado
+git cherry pick	<shaCommit>		//Aplica el commit indicado a la rama actual. (Cuando uno hace cambios en una rama que no corresponde y necesita moverse esos cambios)
+
+GITHUB:
+git clone <URL>				//Permite clonar un repositorio de github indicando su URL
+
+Botones en sitio Github
+Fork					//Clona el repositorio a mi cuenta Github
+
+Comunicarse con Github, se debe crear una clave RSA y registrar la clave pública en github:
+ssh-keygen -t rsa -b 4096 -C "<EmailEnGithub>"	//Crea una llave RSA para poder usarla en github
+
+Copiar clave en MAC:
+pbcopy < ~/.ssh/id_rsa.pub		//Se copia para llevarla a GitHub
+
+Enlazar repositorio local con GitHub
+git remote add origin <SSH o HTTPS>	//origin es por convension pero puede ser cualquier nombre
+git remote remove origin			//Quita el enlace
+
+Traer cambios desde github a pc local:
+git fetch origin <rama>			//Trae los archivos al repositorio local
+git merge origin/<rama>			//Mescla la rama local con la rama remota
+	git merge origin/master --allow-unrelated-historied	//Si falla el comando anterior
+
+//Trae los cambios de github a pc local en un solo paso
+git pull origin <rama>			//Trae los cambios a la rama local desde el github
+
+git push origin <rama>			//Envía los cambios locales al repositorio web
+git push origin <rama> --tags		//Envía los tags locales al repositorio web
+git push origin 
+
+issue_templated.mdb			//
+pull_request_template.md		//
+
+.gitignore				//Permite ignorar algunos archivos para no subirlos a git
+					//www.gitignore.io	tiene un listado predeterminado por lenguage de archivos a ignorar
